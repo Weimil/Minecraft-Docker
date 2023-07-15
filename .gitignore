@@ -1,0 +1,13 @@
+# Edditor folders
+/.vscode
+/.idea
+
+# Ignore folders
+/data/*
+
+# Files folders
+.env
+/config/*
+
+# Do NOT git-ignore .example files/folders
+!*.example

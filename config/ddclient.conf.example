@@ -1,0 +1,4 @@
+protocol=cloudflare
+zone=your-domain.com
+login=your-cloudflare-email
+password=your-cloudflare-api-key

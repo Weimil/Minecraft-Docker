@@ -1,0 +1,16 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+WORKDIR /home/minecraft/server
+
+COPY ./config/start.sh /home/minecraft/server/start.sh
+
+RUN apt-get update 
+RUN apt install -y openjdk-17-jdk openjdk-17-jre wget curl
+
+RUN curl https://meta.fabricmc.net/v2/versions/loader/1.19.2/0.14.21/0.11.2/server/jar -o fabric-server-launch.jar
+
+EXPOSE 25565
+
+ENTRYPOINT [ "./start.sh" ] 

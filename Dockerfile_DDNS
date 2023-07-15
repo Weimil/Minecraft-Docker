@@ -1,0 +1,15 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update 
+RUN apt-get install -y ddclient cron
+
+COPY ./config/ddclient.conf /etc/ddclient.conf
+COPY ./config/run_ddclient.sh /usr/local/bin/run_ddclient.sh
+
+RUN chmod +x /usr/local/bin/run_ddclient.sh
+RUN echo "*/1 * * * * /usr/local/bin/run_ddclient.sh >> /var/log/cron.log 2>&1" > /etc/cron.d/ddclient-cron
+RUN touch /var/log/cron.log
+
+CMD cron && tail -f /var/log/cron.log

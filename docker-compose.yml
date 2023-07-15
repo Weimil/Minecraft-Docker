@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  
+  minecraft:
+    build:
+      context: .
+      dockerfile: Dockerfile_Minecraft
+    container_name: '${PROJECT_NAME:-base}-minecraft'
+    working_dir: /home/minecraft/server
+    volumes:
+      - './data/world:/home/minecraft/server/world'
+      - './data/mods:/home/minecraft/server/mods'
+  
+  ddns:
+    build:
+      context: .
+      dockerfile: Dockerfile_DDNS
+    container_name: '${PROJECT_NAME:-base}-ddns'
+    
